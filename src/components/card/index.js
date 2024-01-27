@@ -7,12 +7,12 @@ function Card(props) {
   return (
     <article className={styles.container}>
       <div className={styles.top}>
-        <img src={image} alt={`card-${id}`} width="360px" />
+        <img src={image} alt={`card-${id}`} />
       </div>
       <div className={styles.content}>
         <h3>{title}</h3>
-        <p>{description}</p>
-        <b>{category}</b>
+        <p className={styles.ctg}>{category}</p>
+        <p className={styles.desc}>{description}</p>
       </div>
     </article>
   );
