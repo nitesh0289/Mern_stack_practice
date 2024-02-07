@@ -1,15 +1,21 @@
 const express = require("express");
+const connectDB = require("./db");
 const app = express();
 
 app.use(express.json());
 
-//route '/'
+const userRouter = require("./routes/api/usersRouter");
+
+//Connection with DB
+connectDB();
 
 app.get("/", (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
-  res.write(`<h1>Hello from CipherSchools Blog Page</h1>`);
+  res.write(`<h1>This is a backend server</h1>`);
   res.send();
 });
+
+app.use("/api/users", userRouter);
 
 const PORT = 3001;
 
