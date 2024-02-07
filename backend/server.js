@@ -4,7 +4,8 @@ const app = express();
 
 app.use(express.json());
 
-const userRouter = require("./routes/api/usersRouter");
+const userRouter = require("./routes/usersRouter");
+const blogRouter = require("./routes/blogsRouter");
 
 //Connection with DB
 connectDB();
@@ -16,6 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", userRouter);
+app.use("/api/blogs", blogRouter);
 
 const PORT = 3001;
 

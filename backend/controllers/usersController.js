@@ -18,6 +18,18 @@ const createUser = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  try {
+    const userInfo = User.findOne({ _id: req.body._id });
+    const user = new User({ ...userInfo, ...req.body });
+    console.log({ user });
+    // await user.save();
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 const getUser = (req, res) => {
   try {
     res.status(200).send("User found!");
@@ -26,4 +38,4 @@ const getUser = (req, res) => {
   }
 };
 
-module.exports = { createUser, getUser };
+module.exports = { createUser, updateUser, getUser };
