@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const { createBlog, updateBlog, getBlog } = require("../controllers/blogsRouter");
+const { createBlog, updateBlog, getBlog } = require("../controllers/blogsController");
 
 router.post("/", createBlog);
 router.patch("/", updateBlog);
