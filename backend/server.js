@@ -1,8 +1,12 @@
 const express = require("express");
 const connectDB = require("./db");
-const app = express();
+const cors = require("cors");
 
-app.use(express.json());
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+require("dotenv").config();
+
+const app = express();
 
 const userRouter = require("./routes/usersRouter");
 const blogRouter = require("./routes/blogsRouter");
@@ -10,11 +14,17 @@ const blogRouter = require("./routes/blogsRouter");
 //Connection with DB
 connectDB();
 
-app.get("/", (req, res) => {
-  res.writeHead(200, { "Content-Type": "text/html" });
-  res.write(`<h1>This is a backend server</h1>`);
-  res.send();
-});
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cookieParser());
+app.use(express.json());
+
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  })
+);
 
 app.use("/api/users", userRouter);
 app.use("/api/blogs", blogRouter);

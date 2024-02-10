@@ -2,9 +2,11 @@ const express = require("express");
 
 const router = express.Router();
 
-const { createUser, updateUser, getUser } = require("../controllers/usersController");
+const { createUser, updateUser, getUser, loginUser } = require("../controllers/usersController");
 
 router.post("/", createUser);
+
+router.post("/login", loginUser);
 
 router.patch("/", updateUser);
 
